@@ -1,32 +1,30 @@
-# Prerequisites
-*.d
+#include <Servo.h>
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+int angle = 0;
+int angle1 = 0;
+int angle2 = 0;
+int angle3 = 0;
 
-# Precompiled Headers
-*.gch
-*.pch
+Servo myservo;   // create a new object of the servo class
+Servo myservo1;  // create a new object of the servo class
+Servo myservo2;  // create a new object of the servo class
+Servo myservo3;  // create a new object of the servo class
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+void setup() {
+  myservo.attach(3);
+  myservo1.attach(5);
+  myservo2.attach(6);
+  // myservo3.attach(9);
+}
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+void loop() {
+  angle = map(analogRead(A0), 0, 1023, 0, 180);   // map the input to a value between 0 and 180 degrees
+  angle1 = map(analogRead(A1), 1023, 0, 0, 180);   // map the input to a value between 0 and 180 degrees
+  angle2 = map(analogRead(A2), 1023, 0, 0, 180);  // map the input to a value between 0 and 180 degrees
+  // angle3 = map(analogRead(A5), 0, 1023, 0, 180); // map the input to a value between 0 and 180 degrees
+  myservo.write(angle);  // tell the servo to go to the set position
+  myservo1.write(angle1); // tell the servo to go to the set position
+  myservo2.write(angle2); // tell the servo to go to the set position
+  // myservo3.write(angle3); // tell the servo to go to the set position
+  delay(15);  // wait 15 ms for the servo to reach the position
+}
